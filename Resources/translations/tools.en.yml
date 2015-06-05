@@ -1,1 +1,4 @@
-simutools: Simutools
+simutools: "Simutools"
+cpasimusante_simutoolsbundle_pluginconfig_param: "Parameter"
+cpasimusante_simutools_plugin_updated: "Configuration saved"
+validate: "Validate"

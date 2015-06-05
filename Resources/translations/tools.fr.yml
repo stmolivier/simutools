@@ -1,1 +1,4 @@
-simutools: Simutools
+simutools: "Simutools"
+cpasimusante_simutoolsbundle_pluginconfig_param: "Paramètre"
+cpasimusante_simutools_plugin_updated: "La configuration a bien été enregistrée"
+validate: "Enregistrer"

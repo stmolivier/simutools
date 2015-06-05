@@ -15,6 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class SimutoolsListener
 {
+    /**
+     * Service container
+     *
+     * @var ContainerInterface
+     */
     private $container;
     private $templating;
 
@@ -31,6 +36,10 @@ class SimutoolsListener
         $this->templating = $container->get('templating');
     }
 
+    //-------------------------------
+    // PLUGIN GENERAL SETTINGS
+    //-------------------------------
+
     /**
      * @DI\Observe("plugin_options_simutoolsbundle")
      *
@@ -38,10 +47,14 @@ class SimutoolsListener
      */
     public function onPluginConfigure(PluginOptionsEvent $event)
     {
+        //retrieve the plugin manager with its Service name
+        $pluginManager = $this->container->get("cpasimusante.plugin.manager.simutools");
+        $form = $pluginManager->getPluginconfigForm();
+        //Send the form to the renderer
         $content = $this->templating->render(
             'CPASimUSanteSimutoolsBundle:Tools:pluginconfig.html.twig',
             array(
-
+                'form' => $form->createView()
             )
         );
         //PluginOptionsEvent require a setResponse()
@@ -49,6 +62,9 @@ class SimutoolsListener
         $event->stopPropagation();
     }
 
+    //-------------------------------
+    // TOOLS LISTENERS
+    //-------------------------------
     /**
      * @DI\Observe("open_tool_workspace_simutools")
      *
