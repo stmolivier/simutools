@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Pluginconfig
  *
  * @ORM\Table(name="cpasimusante_simutools_pluginconfig")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="CPASimUSante\SimutoolsBundle\Repository\PluginconfigRepository")
  */
 class Pluginconfig
 {

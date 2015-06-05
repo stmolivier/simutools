@@ -36,7 +36,6 @@ class Controller extends BaseController
         if ($this->getSecurityContext()->isGranted('ROLE_ADMIN')) {
             return true;
         }
-
         throw new AccessDeniedException();
     }
 }
