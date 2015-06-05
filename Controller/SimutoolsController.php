@@ -4,6 +4,8 @@ namespace CPASimUSante\SimutoolsBundle\Controller;
 
 use CPASimUSante\SimutoolsBundle\Entity\Pluginconfig;
 use CPASimUSante\SimutoolsBundle\Manager\PluginconfigManager;
+use JMS\DiExtraBundle\Annotation as DI;
+use CPASimUSante\SimutoolsBundle\Exception\InvalidPluginconfigFormException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as EXT;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +19,12 @@ use Symfony\Component\HttpFoundation\Response;
 class SimutoolsController extends Controller
 {
     private $pcManager;
+
     /**
      * @DI\InjectParams({
-     *     "pcManager" = @DI\Inject("cpasimusante.plugin.manager.pluginconfig")
+     *     "pcManager" = @DI\Inject("cpasimusante.plugin.manager.simutools")
      * })
+     * @param PluginconfigManager $pcManager
      */
     public function __construct(
         PluginconfigManager $pcManager
@@ -65,6 +69,7 @@ class SimutoolsController extends Controller
      * @EXT\Method({"GET"})
      * @EXT\Template("CPASimUSanteSimutoolsBundle:Tools:pluginconfigsuccess.html.twig")
      *
+     * @param Pluginconfig $pluginconfig
      * @return array
      */
     public function successAction(Pluginconfig $pluginconfig = null)

@@ -3,7 +3,7 @@
 namespace CPASimUSante\PluginconfigBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-
+use JMS\DiExtraBundle\Annotation as DI;
 /**
  * PluginconfigRepository
  *
