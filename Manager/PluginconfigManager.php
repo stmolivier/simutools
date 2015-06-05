@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactoryInterface;
 use JMS\DiExtraBundle\Annotation as DI;
 use CPASimUSante\SimutoolsBundle\Entity\Pluginconfig;
-use CPASimUSante\SimutoolsBundle\Repository\PluginconfigRepository;
+use CPASimUSante\SimutoolsBundle\Entity\PluginconfigRepository;
 use CPASimUSante\SimutoolsBundle\Exception\InvalidPluginconfigFormException;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,13 +21,16 @@ class PluginconfigManager
      */
     private $formFactory;
     private $em;
+    private $pcRepository;
 
     /**
      * @DI\InjectParams({
      *      "em"                    = @DI\Inject("doctrine.orm.entity_manager"),
-     *      "pcRepository"          = @DI\Inject("cpasimusante.plugin.repository.pluginconfig"),
      *      "formFactory"           = @DI\Inject("form.factory")
      * })
+     * @param FormFactoryInterface $formFactory
+     * @param EntityManager $em
+     * @param PluginconfigRepository $pcRepository
      */
     public function __construct(
         FormFactoryInterface $formFactory,
@@ -45,6 +48,10 @@ class PluginconfigManager
         return $pluginconfig[0];
     }
 
+    /**
+     * @param Pluginconfig $pluginconfig
+     * @return \Symfony\Component\Form\FormInterface
+     */
     public function getPluginconfigForm(Pluginconfig $pluginconfig = null)
     {
     //    if ($pluginconfig === null) $pluginconfig = $this->getMediacenterOrEmpty();
@@ -62,7 +69,7 @@ class PluginconfigManager
      * @param Pluginconfig $pluginconfig
      * @param Request $request
      * @return Pluginconfig
-     * @throws InvalidMediacenterFormException
+     * @throws InvalidPluginconfigFormException
      */
     public function processForm(Pluginconfig $pluginconfig, Request $request)
     {

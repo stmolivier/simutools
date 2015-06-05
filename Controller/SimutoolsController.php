@@ -2,13 +2,13 @@
 
 namespace CPASimUSante\SimutoolsBundle\Controller;
 
-use CPASimUSante\SimutoolsBundle\Entity\Pluginconfig;
-use CPASimUSante\SimutoolsBundle\Manager\PluginconfigManager;
 use JMS\DiExtraBundle\Annotation as DI;
-use CPASimUSante\SimutoolsBundle\Exception\InvalidPluginconfigFormException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as EXT;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use CPASimUSante\SimutoolsBundle\Entity\Pluginconfig;
+use CPASimUSante\SimutoolsBundle\Manager\PluginconfigManager;
+use CPASimUSante\SimutoolsBundle\Exception\InvalidPluginconfigFormException;
 
 /**
  * Class SimutoolsController
