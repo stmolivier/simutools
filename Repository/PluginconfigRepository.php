@@ -1,8 +1,9 @@
 <?php
 
-namespace CPASimUSante\SimutoolsBundle\Entity;
+namespace CPASimUSante\SimutoolsBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * PluginconfigRepository
@@ -11,6 +12,11 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 
+/**
+ * Class PluginconfigRepository
+ *
+ * @DI\Service("simutools.service.repository.pluginconfig")
+ */
 class PluginconfigRepository extends EntityRepository
 {
 

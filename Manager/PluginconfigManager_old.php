@@ -6,15 +6,16 @@ use Doctrine\ORM\EntityManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\Form\FormFactoryInterface;
 use CPASimUSante\SimutoolsBundle\Entity\Pluginconfig;
-use CPASimUSante\SimutoolsBundle\Repository\PluginconfigRepository;
+use CPASimUSante\SimutoolsBundle\Entity\PluginconfigRepository;
 use CPASimUSante\SimutoolsBundle\Exception\InvalidPluginconfigFormException;
 use Symfony\Component\HttpFoundation\Request;
 
 
 /**
- * @DI\Service("simutools.plugin.manager.pluginconfig")
+ *
+ * ("cpasimusante.plugin.manager.simutools")
  */
-class PluginconfigManager
+class PluginconfigManager_old
 {
     /**
      * @var \Symfony\Component\Form\FormFactoryInterface
@@ -26,16 +27,15 @@ class PluginconfigManager
     /**
      * @DI\InjectParams({
      *      "em"                    = @DI\Inject("doctrine.orm.entity_manager"),
-     *      "formFactory"           = @DI\Inject("form.factory"),
-     *      "pcRepository"          = @DI\Inject("simutools.service.repository.pluginconfig")
+     *      "formFactory"           = @DI\Inject("form.factory")
      * })
-     * @param EntityManager $em
      * @param FormFactoryInterface $formFactory
+     * @param EntityManager $em
      * @param PluginconfigRepository $pcRepository
      */
     public function __construct(
-        EntityManager $em,
         FormFactoryInterface $formFactory,
+        EntityManager $em,
         PluginconfigRepository $pcRepository
     ) {
         $this->formFactory = $formFactory;

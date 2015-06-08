@@ -19,10 +19,9 @@ use CPASimUSante\SimutoolsBundle\Exception\InvalidPluginconfigFormException;
 class SimutoolsController extends Controller
 {
     private $pcManager;
-
     /**
      * @DI\InjectParams({
-     *     "pcManager" = @DI\Inject("cpasimusante.plugin.manager.simutools")
+     *      "pcManager" = @DI\Inject("simutools.plugin.manager.pluginconfig")
      * })
      * @param PluginconfigManager $pcManager
      */
