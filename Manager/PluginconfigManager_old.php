@@ -27,15 +27,16 @@ class PluginconfigManager_old
     /**
      * @DI\InjectParams({
      *      "em"                    = @DI\Inject("doctrine.orm.entity_manager"),
-     *      "formFactory"           = @DI\Inject("form.factory")
+     *      "formFactory"           = @DI\Inject("form.factory"),
+     *      "pcRepository"          = @DI\Inject("cpasimusante.service.repository.pluginconfig")
      * })
-     * @param FormFactoryInterface $formFactory
      * @param EntityManager $em
+     * @param FormFactoryInterface $formFactory
      * @param PluginconfigRepository $pcRepository
      */
     public function __construct(
-        FormFactoryInterface $formFactory,
         EntityManager $em,
+        FormFactoryInterface $formFactory,
         PluginconfigRepository $pcRepository
     ) {
         $this->formFactory = $formFactory;
@@ -55,7 +56,7 @@ class PluginconfigManager_old
      */
     public function getPluginconfigForm(Pluginconfig $pluginconfig = null)
     {
-    //    if ($pluginconfig === null) $pluginconfig = $this->getMediacenterOrEmpty();
+        //    if ($pluginconfig === null) $pluginconfig = $this->getMediacenterOrEmpty();
         $form = $this->formFactory->create(
             'cpasimusante_simutoolsbundle_pluginconfig',    //factory name (in CPASimUSante\SimutoolsBundle\Form\PluginconfigType)
             $pluginconfig

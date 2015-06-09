@@ -3,6 +3,7 @@
 namespace CPASimUSante\SimutoolsBundle\Listener;
 
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Claroline\CoreBundle\Event\DisplayToolEvent;
 use Claroline\CoreBundle\Event\ConfigureDesktopToolEvent;
@@ -11,16 +12,10 @@ use Claroline\CoreBundle\Event\PluginOptionsEvent;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- *  @DI\Service()
+ *  @DI\Service
  */
-class SimutoolsListener
+class SimutoolsListener extends ContainerAware
 {
-    /**
-     * Service container
-     *
-     * @var ContainerInterface
-     */
-    private $container;
     private $templating;
 
     /**
@@ -32,7 +27,7 @@ class SimutoolsListener
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;
+        $this->setContainer($container);
         $this->templating = $container->get('templating');
     }
 
@@ -48,7 +43,7 @@ class SimutoolsListener
     public function onPluginConfigure(PluginOptionsEvent $event)
     {
         //retrieve the plugin manager with its Service name
-        $pluginManager = $this->container->get("cpasimusante.plugin.manager.simutools");
+        $pluginManager = $this->container->get("cpasimusante.plugin.manager.pluginconfig");
         $form = $pluginManager->getPluginconfigForm();
         //Send the form to the renderer
         $content = $this->templating->render(
@@ -57,9 +52,9 @@ class SimutoolsListener
                 'form' => $form->createView()
             )
         );
-        //PluginOptionsEvent require a setResponse()
-        $event->setResponse(new Response($content));
-        $event->stopPropagation();
+         //PluginOptionsEvent require a setResponse()
+         $event->setResponse(new Response($content));
+         $event->stopPropagation();
     }
 
     //-------------------------------

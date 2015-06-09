@@ -21,7 +21,7 @@ class SimutoolsController extends Controller
     private $pcManager;
     /**
      * @DI\InjectParams({
-     *      "pcManager" = @DI\Inject("simutools.plugin.manager.pluginconfig")
+     *      "pcManager" = @DI\Inject("cpasimusante.plugin.manager.pluginconfig")
      * })
      * @param PluginconfigManager $pcManager
      */
@@ -35,6 +35,7 @@ class SimutoolsController extends Controller
     /**
      * @EXT\Route("/update", name="cpasimusante_pluginconfig_update")
      * @EXT\Method({"GET", "POST"})
+     * the template dor the form
      * @EXT\Template("CPASimUSanteSimutoolsBundle:Tools:pluginconfig.html.twig")
      *
      * @param Request $request
