@@ -50,6 +50,8 @@ class PluginconfigManager
     }
 
     /**
+     * Retrieve a Pluginconfig instance
+     *
      * @return mixed
      */
     public function getPluginconfig()
@@ -67,7 +69,8 @@ class PluginconfigManager
     }
 
     /**
-     * return a Pluginconfig
+     * Retrieve a Pluginconfig instance
+     *
      * @return Pluginconfig|mixed
      */
     public function getPluginconfigOrEmpty()
